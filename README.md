@@ -90,7 +90,8 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - http:
+  - host: gerbau.com
+    http:
       paths:
       - path: /testpath
         backend:
@@ -99,7 +100,7 @@ spec:
 ```
 test with:
 ```
-curl -kL http://192.168.99.101/testpath
+curl -L http://192.168.99.101/testpath -H 'Host: gerbau.com'
 ```
 
 foo-bar-ingress.yml:
@@ -126,6 +127,6 @@ spec:
 
 test with:
 ```
-curl -kL 192.168.99.101/ -H 'Host: foo.bar.com'
-curl -kL 192.168.99.101/ -H 'Host: bar.foo.com'
+curl -L 192.168.99.101/ -H 'Host: foo.bar.com'
+curl -L 192.168.99.101/ -H 'Host: bar.foo.com'
 ```
